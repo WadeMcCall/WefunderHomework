@@ -4,6 +4,10 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-image: radial-gradient(#f4f5f6 20%,transparent 0);
+  background-color: #fff;
+  background-position: 0 0,20px 20px;
+  background-size: 10px 10px;
 }
 
 a {
@@ -13,4 +17,12 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+/* taken from wefunder.com */
+.wf-bg-dotted {
+  background-image: radial-gradient(#f4f5f6 20%,transparent 0);
+  background-color: #fff;
+  background-position: 0 0,20px 20px;
+  background-size: 10px 10px;
 }
