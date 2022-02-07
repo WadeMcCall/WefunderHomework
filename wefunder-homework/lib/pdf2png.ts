@@ -1,20 +1,20 @@
-import { fromPath } from "pdf2pic";
+import rimraf from "rimraf";
+var exec = require('child_process').exec;
 
 // When we have successfully uploaded the pdf to the server, 
-const convertToImages = () => {
-    const options = {
-      density: 100,
-      saveFilename: "untitled",
-      savePath: "../images",
-      format: "png",
-      width: 600,
-      height: 600
-    };
+const convertToImages = async () => {
+    // Unix rm -rf synchronously
+    rimraf.sync("../public/images/*", {});
 
-    const storeAsImage = fromPath(process.env.UPLOAD_PATH + "/theFile.pdf", options);
-    const pageToConvertAsImage = -1;
+    const inputFile = process.env.UPLOAD_PATH + "uploads\\theFile.pdf"
+    const outputFile = process.env.UPLOAD_PATH + "images\\%d.png"
 
-    storeAsImage.bulk(pageToConvertAsImage, false);
+    // The ghostscript command is different for linux and windows
+    const ghostscriptCommand = 'gswin32.exe' // 'gs' on linux; 
+    
+    await exec(
+      `${ghostscriptCommand} -q -dQUIET -dSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dAlignToPixels=0 -dGridFitTT=2 -sDEVICE=png16m -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -r${300} -dFirstPage=${1} -dLastPage=${20} -sOutputFile=${outputFile} ${inputFile}`,
+    );
 }
 
 export default convertToImages;
