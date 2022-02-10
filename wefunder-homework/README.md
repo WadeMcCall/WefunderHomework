@@ -9,7 +9,7 @@ Tested on gs 9.55.0
 
 to install node dependencies
 ```bash
-npm i
+npm i --save
 ```
 
 inside env.local the variable UPLOAD_PATH must be set to a path on your local machine. it is currently set to one on my windows box so that must be changed.
