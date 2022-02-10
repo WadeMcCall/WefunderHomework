@@ -44,9 +44,8 @@ function handle (req: NextApiRequest, res: NextApiResponse) {
       });
     });
 
-    // This is where we set things in motions. Parse the file and the on 'file' event we set up above will fly
-    form.parse(req, (err, fields, files) => {
-      convertToImages();
+    form.parse(req, async (err, fields, files) => {
+      await convertToImages();
 
       res.send(res.statusMessage);
     });
@@ -59,7 +58,7 @@ export const config = {
 };
 
 const handler = nc<NextApiRequest, NextApiResponse>({
-  onError: (err, req, res, next) => {
+  onError: (err, req, res) => {
     console.log(err);
 
     // Unix rm -rf synchronously

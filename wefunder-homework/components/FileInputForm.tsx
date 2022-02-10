@@ -12,7 +12,6 @@ const FileInputForm: React.FC<{props: FileInputProps}> = ({props}) => {
     selectedFile.current = e.target.files[0];
     var formData = new FormData();
     formData.append("theFile", selectedFile.current);
-    console.log(selectedFile);
     axios.post('http://localhost:3000/api/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
