@@ -12,7 +12,7 @@ to install node dependencies
 npm i --save
 ```
 
-<H1>inside next.config.js:<H1>
+#inside next.config.js:
 
 the variable UPLOAD_PATH must be set to a path on your local machine. Set it to the "public" folder found inside this project as that is an assumption this app makes.
 GHOSTSCRIPT_COMMAND must be set as well. On windows its "gswin32.exe" for the 32-bit version. On linux, it should be just 'gs'
