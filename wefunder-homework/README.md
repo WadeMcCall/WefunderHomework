@@ -5,7 +5,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 Make sure you have the latest version of Node installed. I used npm as my package manager.
 
 ghostscript must be installed. Install instructions can be found here: *https://www.ghostscript.com/doc/current/Install.htm* 
-Tested on gs 9.55
+Tested on gs 9.55.0
 
 to install node dependencies
 ```bash
