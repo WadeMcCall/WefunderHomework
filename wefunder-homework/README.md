@@ -12,7 +12,7 @@ to install node dependencies
 npm i --save
 ```
 
-inside env.local the variable UPLOAD_PATH must be set to a path on your local machine. it is currently set to one on my windows box so that must be changed.
+inside env.local the variable UPLOAD_PATH must be set to a path on your local machine. Set it to the "public" folder found inside this project as that is an assumption this app makes.
 
 ## Getting Started
 
