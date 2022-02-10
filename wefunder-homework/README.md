@@ -12,6 +12,8 @@ to install node dependencies
 npm i 
 ```
 
+under the directory named public, add empty directories 'uploads' and 'images'
+
 **inside next.config.js:**
 
 the variable UPLOAD_PATH must be set to a path on your local machine. Set it to the "public" folder found inside this project as that is an assumption this app makes.
