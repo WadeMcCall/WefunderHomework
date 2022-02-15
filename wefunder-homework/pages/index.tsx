@@ -13,14 +13,13 @@ const Home: React.FC<Props> = props => {
   <div className='container-fluid'> 
     <NavBar props={props.currentPage}/>
     <div className='container-lg'> 
-      <h3>Import any .pdf for your pitch deck</h3>
+      <h3>Import any {acceptedFileTypes.toString()} for your pitch deck</h3>
       <FileInputForm props={props.fileInputs}/>
     </div>
   </div>);
 }
 
 export async function getStaticProps() {
-  console.log(acceptedFileTypes);
   return {
     props: {
       fileInputs: { AcceptedFileTypes: acceptedFileTypes},

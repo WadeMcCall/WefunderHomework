@@ -1,8 +1,16 @@
 import rimraf from "rimraf";
-var exec = require('child_process').execSync; // a better way would be to avoid blocking... 
+import fs from 'fs'
+
+var exec = require('child_process').execSync; // a better way would be to avoid blocking...
+const imageFolder = process.env.UPLOAD_PATH + "images"; 
 
 // When we have successfully uploaded the pdf to the server, 
 const convertToImages = async () => {
+    // Create the output folder if it doesnt exist.
+    if (!fs.existsSync(imageFolder)){
+      fs.mkdirSync(imageFolder);
+    }
+
     // Unix rm -rf synchronously
     rimraf.sync(process.env.UPLOAD_PATH + "images/*", {});
 

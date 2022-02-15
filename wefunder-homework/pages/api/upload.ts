@@ -4,6 +4,7 @@ import formidable from 'formidable'
 import { rename } from 'fs';
 import convertToImages from "../../lib/pdf2png"
 import rimraf from 'rimraf';
+import fs from 'fs'
 
 // TODO put in central location. Exists in index.tsx also
 const acceptedFileTypes = process.env.AcceptedFileTypes.split(" ");
@@ -19,9 +20,13 @@ function getFileType(mimeType: string | null) {
 
 // This is where we handle the file being posted.
 function handle (req: NextApiRequest, res: NextApiResponse) {  
+    // Create the output folder if it doesnt exist.
+    if (!fs.existsSync(uploadFolder)){
+      fs.mkdirSync(uploadFolder);
+    }
 
     // Unix rm -rf synchronously
-    rimraf.sync("../../public/uploads/*", {});
+    rimraf.sync(uploadFolder + "/*", {});
 
     const form = new formidable.IncomingForm({
       maxFileSize: 5 * 1024 * 1024, // 5MB
@@ -34,12 +39,13 @@ function handle (req: NextApiRequest, res: NextApiResponse) {
       var fileType = getFileType(file.mimetype);
 
       // Check the user did not send an unsupported file. This should only be a problem if the user is a bad actor since we check for this on client side.
-      if(process.env.AcceptedFileTypes.indexOf(fileType || "") == -1) {
+      if(acceptedFileTypes.indexOf(fileType || "") == -1) {
         throw new Error("invalid file type");
       }
 
       // Rename the incoming file to the file's name
       rename(uploadFolder + "/" + file.newFilename, uploadFolder + "/" + name + "." + fileType, (err) => {
+        rimraf.sync(uploadFolder + "/*", {});
         if(err) throw new  Error(err.message);
       });
     });
@@ -62,7 +68,7 @@ const handler = nc<NextApiRequest, NextApiResponse>({
     console.log(err);
 
     // Unix rm -rf synchronously
-    rimraf.sync("../../public/uploads/*", {});
+    rimraf.sync(uploadFolder + "/*", {});
 
     res.status(500).end("Unable to upload file! " + err.toString());
   },
