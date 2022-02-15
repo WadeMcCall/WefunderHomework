@@ -1,18 +1,16 @@
 import * as React from "react";
+import { useRouter } from 'next/router'
 
-export type NavBarProps = {
-    currentPage: string;
-}
-
-const NavBar: React.FC<{props: NavBarProps}> = ({props}) => {
+const NavBar: React.FC = () => {
     var uploadNav;
     var deckNav;
-    switch(props.currentPage) {
-        case "index":
+    const router = useRouter();
+    switch(router.pathname) {
+        case "/":
             uploadNav = <a className="nav-link disabled" href="#" aria-disabled="true">Upload</a>;
             deckNav = <a className="nav-link active text-light" aria-current="page" href="http://localhost:3000/pitchDeck">View Deck</a>
             break;
-        case "pitchDeck":
+        case "/pitchDeck":
             uploadNav = <a className="nav-link active text-light" href="http://localhost:3000/" aria-disabled="true">Upload</a>;
             deckNav = <a className="nav-link disabled" aria-current="page" href="#">View Deck</a>
             break;

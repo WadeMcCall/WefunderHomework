@@ -1,10 +1,9 @@
-import NavBar, { NavBarProps } from '../components/navBar';
+import NavBar from '../components/navBar';
 import { readdirSync } from "fs"
 import sizeOf from "image-size"
 
 
 type Props = {
-  currentPage: NavBarProps,
   images: isImage[]
 }
 
@@ -34,7 +33,7 @@ const ImageList: React.FC<imageListProps> = props => {
 const PitchDeck: React.FC<Props> = props => {
   return (
   <div className='container-fluid'> 
-    <NavBar props={props.currentPage}/>
+    <NavBar/>
     <div className='container-lg'> 
       <ImageList
         images = {props.images}
