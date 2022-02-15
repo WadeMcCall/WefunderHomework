@@ -9,8 +9,10 @@ Tested on gs 9.55.0
 
 to install node dependencies
 ```bash
-npm i --save
+npm i 
 ```
+
+under the directory named public, add empty directories 'uploads' and 'images'
 
 **inside next.config.js:**
 
