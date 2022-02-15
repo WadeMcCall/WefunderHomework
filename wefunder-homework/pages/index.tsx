@@ -1,7 +1,7 @@
 import FileInputForm, { FileInputProps } from '../components/FileInputForm';
 import NavBar, { NavBarProps } from '../components/navBar';
 
-const acceptedFileTypes = [".PDF"/*, ".DOCX"*/];
+const acceptedFileTypes = process.env.AcceptedFileTypes.split(" ").map(i => "." + i);
 
 type Props = {
   fileInputs: FileInputProps
@@ -20,6 +20,7 @@ const Home: React.FC<Props> = props => {
 }
 
 export async function getStaticProps() {
+  console.log(acceptedFileTypes);
   return {
     props: {
       fileInputs: { AcceptedFileTypes: acceptedFileTypes},

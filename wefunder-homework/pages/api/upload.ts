@@ -6,7 +6,7 @@ import convertToImages from "../../lib/pdf2png"
 import rimraf from 'rimraf';
 
 // TODO put in central location. Exists in index.tsx also
-const acceptedFileTypes = ["pdf"/*, "docx"*/];
+const acceptedFileTypes = process.env.AcceptedFileTypes.split(" ");
 const uploadFolder = process.env.UPLOAD_PATH + "uploads";
 
 // helper function to get the file extension from the mimetype
@@ -34,7 +34,7 @@ function handle (req: NextApiRequest, res: NextApiResponse) {
       var fileType = getFileType(file.mimetype);
 
       // Check the user did not send an unsupported file. This should only be a problem if the user is a bad actor since we check for this on client side.
-      if(acceptedFileTypes.indexOf(fileType || "") == -1) {
+      if(process.env.AcceptedFileTypes.indexOf(fileType || "") == -1) {
         throw new Error("invalid file type");
       }
 
