@@ -1,33 +1,11 @@
 import NavBar from '../components/navBar';
 import { readdirSync } from "fs"
 import sizeOf from "image-size"
+import ImageList, { iImage } from "../components/ImageList"
 
 
 type Props = {
-  images: isImage[]
-}
-
-type isImage = {
-  src: string,
-  dimensions: {width:number, height:number}
-}
-
-type imageListProps = {
-  images: isImage[]
-}
-
-const ImageList: React.FC<imageListProps> = props => {
-    const images = props.images.map((image) => {
-      return (
-        <img 
-          src={"/" + image.src}
-          key={image.src}
-          className="img-fluid"
-          height={image.dimensions.height}
-          width={image.dimensions.width}
-        />);
-    });
-    return <div>{images}</div>;
+  images: iImage[]
 }
 
 const PitchDeck: React.FC<Props> = props => {
