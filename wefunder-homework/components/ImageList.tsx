@@ -2,7 +2,8 @@
 // convenience type to hold image properties
 export type iImage = {
   src: string,
-  dimensions: {width:number, height:number}
+  width:number, 
+  height:number
 }
 
 type imageListProps = {
@@ -16,8 +17,8 @@ const ImageList: React.FC<imageListProps> = props => {
           src={"/" + image.src}
           key={image.src}
           className="img-fluid"
-          height={image.dimensions.height}
-          width={image.dimensions.width}
+          height={image.height}
+          width={image.width}
         />);
     });
     return <div>{images}</div>;

@@ -22,10 +22,10 @@ const PitchDeck: React.FC<Props> = props => {
 
 export async function getStaticProps() {
   var images = readdirSync(process.env.UPLOAD_PATH + "images");
-  var pitchDeckImages = [];
+  var pitchDeckImages = []; // iImage []
   for(var image in images) {
     const dimensions = sizeOf(process.env.UPLOAD_PATH + "/images/" + images[image])
-    pitchDeckImages.push({ src: "images/" + images[image], dimensions:{height: dimensions.height, width:dimensions.width}});
+    pitchDeckImages.push({ src: "images/" + images[image], height: dimensions.height, width: dimensions.width});
   }
   return {
     props: {
